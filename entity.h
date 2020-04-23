@@ -9,8 +9,8 @@ class World;
 class Entity {
     public:
         Entity( World *world, Vector pos, AABB aabb ) {
-            m_pos = pos;
             m_world = world;
+            m_pos = pos;
             m_aabb = aabb;
         };
 

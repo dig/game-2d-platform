@@ -2,8 +2,8 @@
 #define PLAYER_H
 
 #include <GLFW/glfw3.h>
-#include "entity.h"
 #include "window.h"
+#include "entity.h"
 
 extern Window* g_window;
 

@@ -7,7 +7,9 @@
 
 class Platform: public Entity {
     public:
-        Platform( World* world, Vector position, float width, float height ) : Entity( world, position, AABB( position, Vector( width, height ) ) ) {
+        Platform( World* world, Vector position, float width, float height )
+            : Entity( world, position, AABB( position, Vector( position.getX() + width, position.getY() + height ) ) ) {
+
             m_width = width;
             m_height = height;
         };

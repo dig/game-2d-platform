@@ -23,6 +23,8 @@ class World {
 
         std::vector<Entity*> getEntities();
         void addEntity( Entity* entity );
+
+        bool collidesWithEntity( Entity* entity, Vector aabb );
 };
 
 #endif

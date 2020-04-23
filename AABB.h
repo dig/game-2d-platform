@@ -18,12 +18,6 @@ class AABB {
             return m_max;
         }
 
-    /*
-    float d1x = b->min.x - a->max.x;
-    float d1y = b->min.y - a->max.y;
-    float d2x = a->min.x - b->max.x;
-    float d2y = a->min.y - b->max.y; */
-
         bool collides( AABB with ) {
             float d1x = with.getMin().getX() - m_max.getX();
             float d1y = with.getMin().getY() - m_max.getY();
@@ -33,11 +27,9 @@ class AABB {
             if ( d1x > 0.0f || d1y > 0.0f ) {
                 return false;
             }
-
             if ( d2x > 0.0f || d2y > 0.0f ) {
                 return false;
             }
-
             return true;
         }
 

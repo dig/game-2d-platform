@@ -14,15 +14,8 @@ void World::tick() {
 
     // collision detection
     for (Entity* ent1 : entities) {
-        for (Entity* ent2 : entities) {
-            // check if ent1 collides with ent2
-            bool collides = ent1->getAABB().collides( ent2->getAABB() );
-
-            if (collides) {
-                std::cout << "collision: " << collides << std::endl;
-                ent1->setVelocity( Vector(0, 0) );
-                ent2->setVelocity( Vector(0, 0) );
-            }
+        if (collidesWithEntity(ent1)) {
+            ent1->setVelocity( Vector(0, 0) );
         }
     }
 }
@@ -40,6 +33,20 @@ std::vector<Entity*> World::getEntities() {
     return entities;
 };
 
-void World::addEntity(Entity* entity) {
-    entities.push_back(entity);
+void World::addEntity( Entity* entity ) {
+    entities.push_back( entity );
+}
+
+bool World::collidesWithEntity( Entity* entity, Vector aabb ) {
+    bool result = false;
+
+    for ( Entity* ent2 : entities ) {
+        if ( entity == ent2 ) continue;
+
+        if ( aabb.collides( ent2->getAABB() ) ) {
+            result = true;
+        }
+    }
+
+    return result;
 }
