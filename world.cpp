@@ -1,4 +1,3 @@
-#include <iostream>
 #include "world.h"
 
 World::World() {
@@ -12,6 +11,20 @@ void World::tick() {
     for (Entity* ent : entities) {
         ent->tick();
     }
+
+    // collision detection
+    for (Entity* ent1 : entities) {
+        for (Entity* ent2 : entities) {
+            // check if ent1 collides with ent2
+            bool collides = ent1->getAABB().collides( ent2->getAABB() );
+
+            if (collides) {
+                std::cout << "collision: " << collides << std::endl;
+                ent1->setVelocity( Vector(0, 0) );
+                ent2->setVelocity( Vector(0, 0) );
+            }
+        }
+    }
 }
 
 void World::draw() {
@@ -23,7 +36,7 @@ void World::draw() {
     }
 }
 
-vector<Entity*> World::getEntities() {
+std::vector<Entity*> World::getEntities() {
     return entities;
 };
 

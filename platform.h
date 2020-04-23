@@ -1,11 +1,13 @@
-#include "entity.h"
-
 #ifndef PLATFORM_H
 #define PLATFORM_H
 
+#include <iostream>
+#include <GLFW/glfw3.h>
+#include "entity.h"
+
 class Platform: public Entity {
     public:
-        Platform(float x, float y, float width, float height) : Entity(x, y) {
+        Platform( World* world, Vector position, float width, float height ) : Entity( world, position, AABB( position, Vector( width, height ) ) ) {
             m_width = width;
             m_height = height;
         };

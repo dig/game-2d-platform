@@ -1,19 +1,24 @@
-#include "entity.h"
-
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <GLFW/glfw3.h>
+#include "entity.h"
+#include "window.h"
+
+extern Window* g_window;
+
 class Player: public Entity {
     public:
-        Player(float x, float y) : Entity(x, y) {};
-        void onKeyPress(GLFWwindow* window, int key, int scancode, int action, int mods);
+        Player( World* world, Vector position ) : Entity( world, position, AABB( Vector( 0, 0 ), Vector( 0, 0 ) ) ) {};
 
     private:
         float m_squareSideLen = 20;
-        float m_speed = 5;
+        float m_speed = 2;
 
         void draw() override;
         void tick() override;
+
+        AABB getAABB() override;
 };
 
 #endif

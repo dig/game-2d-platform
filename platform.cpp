@@ -1,18 +1,13 @@
-#include <iostream>
-#include <GLFW/glfw3.h>
 #include "platform.h"
 
 void Platform::draw()
 {
     glBegin(GL_POLYGON);
-    glVertex2f(m_posx, m_posy);
-    glVertex2f(m_posx + m_width, m_posy);
-    glVertex2f(m_posx + m_width, m_posy + m_height);
-    glVertex2f(m_posx, m_posy + m_height);
+    glVertex2f(m_pos.getX(), m_pos.getY());
+    glVertex2f(m_pos.getX() + m_width, m_pos.getY());
+    glVertex2f(m_pos.getX() + m_width, m_pos.getY() + m_height);
+    glVertex2f(m_pos.getX(), m_pos.getY() + m_height);
     glEnd();
 }
 
-void Platform::tick()
-{
-    // std::cout << "Platform::tick()" << std::endl;
-}
+void Platform::tick() {}
