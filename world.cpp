@@ -1,4 +1,9 @@
+#include <iostream>
 #include "world.h"
+
+World::World() {
+    // setup world
+}
 
 void World::tick() {
     // tick world here

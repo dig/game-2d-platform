@@ -14,5 +14,5 @@ void Platform::draw()
 
 void Platform::tick()
 {
-    // std::cout << "tick()" << std::endl;
+    // std::cout << "Platform::tick()" << std::endl;
 }

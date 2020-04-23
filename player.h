@@ -5,7 +5,7 @@
 
 class Player: public Entity {
     public:
-        Player(GLFWwindow* window, float x, float y) : Entity(x, y) {};
+        Player(float x, float y) : Entity(x, y) {};
         void onKeyPress(GLFWwindow* window, int key, int scancode, int action, int mods);
 
     private:
