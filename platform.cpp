@@ -1,13 +1,12 @@
 #include "platform.h"
 
-void Platform::draw()
-{
+void Platform::draw() {
     glBegin(GL_POLYGON);
-    glVertex2f(m_pos.getX(), m_pos.getY());
-    glVertex2f(m_pos.getX() + m_width, m_pos.getY());
-    glVertex2f(m_pos.getX() + m_width, m_pos.getY() + m_height);
-    glVertex2f(m_pos.getX(), m_pos.getY() + m_height);
+    glVertex2f(m_pos.x(), m_pos.y());
+    glVertex2f(m_pos.x() + m_width, m_pos.y());
+    glVertex2f(m_pos.x() + m_width, m_pos.y() + m_height);
+    glVertex2f(m_pos.x(), m_pos.y() + m_height);
     glEnd();
 }
 
-void Platform::tick() {}
+void Platform::tick(double dt) {}

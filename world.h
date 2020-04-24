@@ -9,22 +9,26 @@
 #include "player.h"
 #include "window.h"
 
-extern Window* g_window;
+extern Window *g_window;
 
 class World {
-    private:
-        std::vector<Entity*> entities;
+private:
+    std::vector<Entity *> m_entities;
 
-    public:
-        World();
+public:
+    World();
 
-        void tick();
-        void draw();
+    void tick(double dt);
 
-        std::vector<Entity*> getEntities();
-        void addEntity( Entity* entity );
+    void draw();
 
-        bool collidesWithEntity( Entity* entity, Vector aabb );
+    std::vector<Entity *> entities() {
+        return m_entities;
+    }
+
+    void addEntity(Entity *entity) {
+        m_entities.push_back(entity);
+    }
 };
 
 #endif

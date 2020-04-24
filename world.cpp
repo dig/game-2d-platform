@@ -1,52 +1,38 @@
 #include "world.h"
+#include <algorithm>
 
 World::World() {
     // setup world
 }
 
-void World::tick() {
-    // tick world here
-
+void World::tick(double dt) {
     // tick entities
-    for (Entity* ent : entities) {
-        ent->tick();
+    for (Entity *ent : m_entities) {
+        ent->tick(dt);
     }
 
     // collision detection
-    for (Entity* ent1 : entities) {
-        if (collidesWithEntity(ent1)) {
-            ent1->setVelocity( Vector(0, 0) );
+    for (Entity *ent1 : m_entities) {
+        for (Entity *ent2 : m_entities) {
+            if (ent1 == ent2) {
+                continue;
+            }
+
+            bool colliding = ent1->aabb().collides(ent2->aabb(), 5);
+            bool collidedAlready = std::find(ent1->collisions().begin(), ent1->collisions().end(), ent2)
+                                      != ent1->collisions().end();
+            if (!colliding && collidedAlready) {
+                ent1->collisionEnd(ent2);
+            } else if (colliding && !collidedAlready) {
+                ent1->collision(ent2);
+            }
         }
     }
 }
 
 void World::draw() {
-    // draw world here
-
     // draw entities
-    for (Entity* ent : entities) {
+    for (Entity *ent : m_entities) {
         ent->draw();
     }
-}
-
-std::vector<Entity*> World::getEntities() {
-    return entities;
-};
-
-void World::addEntity( Entity* entity ) {
-    entities.push_back( entity );
-}
-
-bool World::collidesWithEntity( Entity* entity, Vector aabb ) {
-    bool result = false;
-
-    for ( Entity* ent2 : entities ) {
-        if ( entity == ent2 ) continue;
-
-        if ( aabb.collides( ent2->getAABB() ) ) {
-            result = true;
-        }
-    }
-
-    return result;
 }

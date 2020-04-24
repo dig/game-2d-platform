@@ -2,37 +2,41 @@
 #define VECTOR_H
 
 class Vector {
-    public:
-        Vector(float x, float y) {
-            m_x = x;
-            m_y = y;
-        }
+public:
+    Vector(float x, float y) {
+        m_x = x;
+        m_y = y;
+    }
 
-        float getX() {
-            return m_x;
-        }
+    float x() {
+        return m_x;
+    }
 
-        float getY() {
-            return m_y;
-        }
+    float y() {
+        return m_y;
+    }
 
-        void add(Vector position) {
-            m_x += position.getX();
-            m_y += position.getY();
-        }
+    void add(Vector position) {
+        m_x += position.x();
+        m_y += position.y();
+    }
 
-        void subtract(Vector position) {
-            m_x -= position.getX();
-            m_y -= position.getY();
-        }
+    void subtract(Vector position) {
+        m_x -= position.x();
+        m_y -= position.y();
+    }
 
-        void multiply(float x) {
-            m_x *= x;
-            m_y *= x;
-        }
+    void multiply(float x) {
+        m_x *= x;
+        m_y *= x;
+    }
 
-    private:
-        float m_x, m_y;
+    bool equals(Vector x) {
+        return m_x == x.x() && m_y == x.y();
+    }
+
+private:
+    float m_x, m_y;
 };
 
 #endif

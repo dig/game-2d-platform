@@ -1,6 +1,6 @@
 #include "window.h"
 
-Window::Window(char* name, int width, int height) {
+Window::Window(char *name, int width, int height) {
     if (!glfwInit()) {
         m_error = true;
         return;

@@ -1,55 +1,63 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
+#include <algorithm>
+#include <vector>
 #include "vector.h"
 #include "AABB.h"
 
-class World;
-
 class Entity {
-    public:
-        Entity( World *world, Vector pos, AABB aabb ) {
-            m_world = world;
-            m_pos = pos;
-            m_aabb = aabb;
-        };
+public:
+    Entity(Vector pos, AABB aabb) {
+        m_pos = pos;
+        m_aabb = aabb;
+    };
 
-        virtual void tick() = 0;
-        virtual void draw() = 0;
+    virtual void tick(double dt) = 0;
 
-        World* getWorld() {
-            return m_world;
-        }
+    virtual void draw() = 0;
 
-        Vector getPosition() {
-            return m_pos;
-        }
+    virtual void collision(Entity *entity) {
+        m_collisions.push_back(entity);
+    }
 
-        void setPosition( Vector vector ) {
-            m_pos = vector;
-        }
+    virtual void collisionEnd(Entity *entity) {
+        m_collisions.erase(std::remove(m_collisions.begin(), m_collisions.end(), entity), m_collisions.end());
+    }
 
-        Vector getVelocity() {
-            return m_vel;
-        }
+    Vector position() {
+        return m_pos;
+    }
 
-        void setVelocity( Vector vector ) {
-            m_vel = vector;
-        }
+    void position(Vector vector) {
+        m_pos = vector;
+    }
 
-        virtual AABB getAABB() {
-            return m_aabb;
-        }
+    Vector velocity() {
+        return m_vel;
+    }
 
-        void setAABB( AABB aabb ) {
-            m_aabb = aabb;
-        }
+    void velocity(Vector vector) {
+        m_vel = vector;
+    }
 
-    protected:
-        Vector m_pos = Vector( 0, 0 );
-        Vector m_vel = Vector( 0, 0 );
-        AABB m_aabb = AABB( Vector( 0, 0 ), Vector( 0, 0 ) );
-        World* m_world;
+    virtual AABB aabb() {
+        return m_aabb;
+    }
+
+    void aabb(AABB aabb) {
+        m_aabb = aabb;
+    }
+
+    std::vector<Entity *> &collisions() {
+        return m_collisions;
+    }
+
+protected:
+    Vector m_pos = Vector(0, 0);
+    Vector m_vel = Vector(0, 0);
+    AABB m_aabb = AABB(Vector(0, 0), Vector(0, 0));
+    std::vector<Entity *> m_collisions;
 };
 
 #endif

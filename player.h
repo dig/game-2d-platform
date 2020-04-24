@@ -5,20 +5,24 @@
 #include "window.h"
 #include "entity.h"
 
-extern Window* g_window;
+extern Window *g_window;
 
-class Player: public Entity {
-    public:
-        Player( World* world, Vector position ) : Entity( world, position, AABB( Vector( 0, 0 ), Vector( 0, 0 ) ) ) {};
+class Player : public Entity {
+public:
+    Player(Vector position) : Entity(position, AABB(Vector(0, 0), Vector(0, 0))) {};
 
-    private:
-        float m_squareSideLen = 20;
-        float m_speed = 2;
+private:
+    float m_squareSideLen = 20;
+    float m_speed = 2;
+    float m_isOnGround = false;
 
-        void draw() override;
-        void tick() override;
+    void draw() override;
 
-        AABB getAABB() override;
+    void tick(double dt) override;
+
+    AABB aabb() override;
+
+    void handleMovement();
 };
 
 #endif
