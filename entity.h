@@ -29,7 +29,7 @@ public:
         return m_pos;
     }
 
-    void position(Vector vector) {
+    virtual void position(Vector vector) {
         m_pos = vector;
     }
 
@@ -39,6 +39,14 @@ public:
 
     void velocity(Vector vector) {
         m_vel = vector;
+    }
+
+    Vector acceleration() {
+        return m_acc;
+    }
+
+    void acceleration(Vector vector) {
+        m_acc = vector;
     }
 
     virtual AABB aabb() {
@@ -56,6 +64,7 @@ public:
 protected:
     Vector m_pos = Vector(0, 0);
     Vector m_vel = Vector(0, 0);
+    Vector m_acc = Vector(0, -20.8);
     AABB m_aabb = AABB(Vector(0, 0), Vector(0, 0));
     std::vector<Entity *> m_collisions;
 };

@@ -3,7 +3,7 @@ project(test)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(test main.cpp entity.h platform.cpp platform.h world.cpp world.h player.cpp player.h window.cpp window.h vector.cpp vector.h AABB.cpp AABB.h)
+add_executable(test main.cpp entity.h platform.cpp platform.h world.cpp world.h player.cpp player.h window.cpp window.h vector.cpp vector.h AABB.cpp AABB.h livingentity.cpp livingentity.h)
 
 add_subdirectory(lib/glfw)
 include_directories(lib/glfw/include)

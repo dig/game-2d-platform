@@ -33,6 +33,24 @@ public:
         return true;
     }
 
+    AABB translate(Vector vector) {
+        Vector newMin = min();
+        newMin.add(vector);
+
+        Vector newMax = max();
+        newMax.add(vector);
+
+        return {newMin, newMax};
+    }
+
+    float deltaX() {
+        return m_max.x() - m_min.x();
+    }
+
+    float deltaY() {
+        return m_max.y() - m_min.y();
+    }
+
 private:
     Vector m_min = Vector(0, 0);
     Vector m_max = Vector(0, 0);

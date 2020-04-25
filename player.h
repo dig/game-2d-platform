@@ -3,26 +3,22 @@
 
 #include <GLFW/glfw3.h>
 #include "window.h"
-#include "entity.h"
+#include "livingentity.h"
+
+#define PLAYER_SIZE 40
 
 extern Window *g_window;
 
-class Player : public Entity {
+class Player : public LivingEntity {
 public:
-    Player(Vector position) : Entity(position, AABB(Vector(0, 0), Vector(0, 0))) {};
+    Player(Vector position) : LivingEntity(position, AABB(Vector(position.x(), position.y()), Vector(position.x() + PLAYER_SIZE, position.y() + PLAYER_SIZE))) {};
 
 private:
-    float m_squareSideLen = 20;
-    float m_speed = 2;
-    float m_isOnGround = false;
+    float m_squareSideLen = PLAYER_SIZE;
 
     void draw() override;
 
     void tick(double dt) override;
-
-    AABB aabb() override;
-
-    void handleMovement();
 };
 
 #endif
