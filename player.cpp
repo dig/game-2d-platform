@@ -21,7 +21,7 @@ void Player::tick(double dt) {
         to.subtract(Vector(1, 0));
     }
     if (m_isOnGround && glfwGetKey(g_window->getWindow(), GLFW_KEY_SPACE) == GLFW_PRESS) {
-        velocity(Vector(0, 70));
+        velocity(Vector(0, 180));
     }
 
     // only move if position has been changed

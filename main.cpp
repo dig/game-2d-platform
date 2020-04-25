@@ -15,13 +15,13 @@ int main() {
     int width, height;
     glfwGetFramebufferSize(g_window->getWindow(), &width, &height);
 
-    Platform floor(Vector(0, height - (height / 6)), width, height / 6);
+    Platform floor(Vector(0, 400), width, 400);
     g_world->addEntity(&floor);
 
-    Platform floor1(Vector(0, height - (height / 2)), width / 3, height / 10);
+    Platform floor1(Vector(0, 250), 180, 60);
     g_world->addEntity(&floor1);
 
-    Platform floor2(Vector(width - (width / 3), height - (height / 2)), width / 3, height / 10);
+    Platform floor2(Vector(460, 250), 180, 60);
     g_world->addEntity(&floor2);
 
     Player player(Vector(0, 0));

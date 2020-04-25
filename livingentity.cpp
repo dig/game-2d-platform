@@ -6,7 +6,7 @@ void LivingEntity::position(Vector position) {
 
     AABB aabbTo = AABB(position, Vector(position.x() + aabb().deltaX(), position.y() + aabb().deltaY()));
     for (Entity *ent : m_collisions) {
-        if (ent->aabb().collides(aabbTo)) {
+        if (ent->aabb().collides(aabbTo, -1)) {
             moveTo = false;
         }
     }
@@ -43,8 +43,10 @@ void LivingEntity::tick(double dt) {
     to.subtract(Vector(dt * velocity().x(), dt * velocity().y()));
     position(to);
 
-    velocity(Vector(velocity().x() + (dt * acceleration().x()), velocity().y() + (dt * acceleration().y())));
-    std::cout << "x:" << velocity().x() << " y:" << velocity().y() << std::endl;
+    // acceleration
+    // velocity(Vector(velocity().x() + (dt * acceleration().x()), velocity().y() + (dt * acceleration().y())));
+
+    std::cout << "m_isOnGround: " << m_isOnGround << " " << "x:" << velocity().x() << " y:" << velocity().y() << std::endl;
 }
 
 AABB LivingEntity::aabb() {

@@ -64,7 +64,7 @@ public:
 protected:
     Vector m_pos = Vector(0, 0);
     Vector m_vel = Vector(0, 0);
-    Vector m_acc = Vector(0, -20.8);
+    Vector m_acc = Vector(0, -140.8);
     AABB m_aabb = AABB(Vector(0, 0), Vector(0, 0));
     std::vector<Entity *> m_collisions;
 };
